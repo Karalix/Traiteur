@@ -3,6 +3,8 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -35,8 +37,8 @@ public class Vue {
 	private JFileChooser chooser;
 	
 	private Traitement traitement ;
-	private Image imagesrc;
-	private Image imageres;
+	private BufferedImage imagesrc;
+	private BufferedImage imageres;
 	
 	
 	public Vue(){
@@ -75,6 +77,20 @@ public class Vue {
 				
 			}
 		});
+		
+		sauver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {	
+				try {
+					ImageIO.write(imageres, "png", new File("imgOutput.png"));
+				} catch(IOException e) {
+				    System.out.println(e);
+				}
+				
+			}
+		});
+		
 		menuTraitement = new JMenu("Traitement");
 		gris = new JMenuItem("Gris");
 		bleu = new JMenuItem("Bleu");
@@ -85,7 +101,7 @@ public class Vue {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				traitement = new GrisTraitement(imagesrc, 0);
+				traitement = new GrisTraitement(imagesrc, imageres);
 				
 			}
 		});
@@ -94,9 +110,10 @@ public class Vue {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				traitement = new BleuTraitement(imagesrc, 0);
-
-				
+				imageres = new BufferedImage(imagesrc.getWidth(),imagesrc.getHeight(),BufferedImage.TYPE_INT_ARGB);
+				traitement = new BleuTraitement(imagesrc, imageres);
+				traitement.traiter();
+				setImage(imageres);
 			}
 		});
 		
@@ -104,8 +121,10 @@ public class Vue {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				traitement = new RougeTraitement(imagesrc, 0);
-
+				imageres = new BufferedImage(imagesrc.getWidth(),imagesrc.getHeight(),BufferedImage.TYPE_INT_ARGB);
+				traitement = new RougeTraitement(imagesrc, imageres);
+				traitement.traiter();
+				setImage(imageres);
 				
 			}
 		});
@@ -114,8 +133,10 @@ public class Vue {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				traitement = new RougeTraitement(imagesrc, 0);
-
+				imageres = new BufferedImage(imagesrc.getWidth(),imagesrc.getHeight(),BufferedImage.TYPE_INT_ARGB);
+				traitement = new VertTraitement(imagesrc, imageres);
+				traitement.traiter();
+				setImage(imageres);
 			}
 		});
 		

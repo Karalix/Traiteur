@@ -1,16 +1,17 @@
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 
 public class Traitement implements ITraiter, Runnable{
 
-	protected Image imageBase ;
-	protected Image imageResult;
+	protected BufferedImage imageBase ;
+	protected BufferedImage imageResult;
 	protected int offset ;
 	
 	
-	public Traitement(Image base,int offset){
+	public Traitement(BufferedImage base,BufferedImage res){
 		imageBase = base;
-		this.offset = offset ;
+		imageResult = res ;
 		
 	}
 	
