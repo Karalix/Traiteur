@@ -4,8 +4,8 @@ import java.awt.image.BufferedImage;
 
 public class BleuTraitement extends Traitement {
 
-	public BleuTraitement(BufferedImage base, BufferedImage res) {
-		super(base, res);
+	public BleuTraitement(BufferedImage base, BufferedImage res,int offset,int taille) {
+		super(base, res,offset,taille);
 		// TODO Auto-generated constructor stub
 	}
 	

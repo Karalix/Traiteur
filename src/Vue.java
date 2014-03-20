@@ -101,8 +101,16 @@ public class Vue {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				traitement = new GrisTraitement(imagesrc, imageres);
-				
+				imageres = new BufferedImage(imagesrc.getWidth(),imagesrc.getHeight(),BufferedImage.TYPE_INT_ARGB);
+				int offsetPrev = 0;
+				int offset =0;
+				for (int i = 1 ; i <= slider.getValue() ; ++i){
+					offset += calcOffset(i, offsetPrev);
+					traitement = new GrisTraitement(imagesrc, imageres,offsetPrev,offset);
+					traitement.traiter();
+					offsetPrev = offset;
+					setImage(imageres);
+				}
 			}
 		});
 		
@@ -111,9 +119,15 @@ public class Vue {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				imageres = new BufferedImage(imagesrc.getWidth(),imagesrc.getHeight(),BufferedImage.TYPE_INT_ARGB);
-				traitement = new BleuTraitement(imagesrc, imageres);
-				traitement.traiter();
-				setImage(imageres);
+				int offsetPrev = 0;
+				int offset =0;
+				for (int i = 1 ; i <= slider.getValue() ; ++i){
+					offset += calcOffset(i, offsetPrev);
+					traitement = new BleuTraitement(imagesrc, imageres,offsetPrev,offset);
+					traitement.traiter();
+					offsetPrev = offset;
+					setImage(imageres);
+				}
 			}
 		});
 		
@@ -122,9 +136,15 @@ public class Vue {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				imageres = new BufferedImage(imagesrc.getWidth(),imagesrc.getHeight(),BufferedImage.TYPE_INT_ARGB);
-				traitement = new RougeTraitement(imagesrc, imageres);
-				traitement.traiter();
-				setImage(imageres);
+				int offsetPrev = 0;
+				int offset =0;
+				for (int i = 1 ; i <= slider.getValue() ; ++i){
+					offset += calcOffset(i, offsetPrev);
+					traitement = new RougeTraitement(imagesrc, imageres,offsetPrev,offset);
+					traitement.traiter();
+					offsetPrev = offset;
+					setImage(imageres);
+				}
 				
 			}
 		});
@@ -134,9 +154,15 @@ public class Vue {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				imageres = new BufferedImage(imagesrc.getWidth(),imagesrc.getHeight(),BufferedImage.TYPE_INT_ARGB);
-				traitement = new VertTraitement(imagesrc, imageres);
-				traitement.traiter();
-				setImage(imageres);
+				int offsetPrev = 0;
+				int offset =0;
+				for (int i = 1 ; i <= slider.getValue() ; ++i){
+					offset += calcOffset(i, offsetPrev);
+					traitement = new VertTraitement(imagesrc, imageres,offsetPrev,offset);
+					traitement.traiter();
+					offsetPrev = offset;
+					setImage(imageres);
+				}
 			}
 		});
 		
@@ -161,5 +187,13 @@ public class Vue {
 	public void setImage(Image i){
 		ImageIcon icon = new ImageIcon(i);
 		image.setIcon(icon);
+	}
+	
+	public int calcOffset(int numTh,int offsetPrev){
+		int nbTh = slider.getValue() - numTh;
+		if(nbTh == 0)
+			return imagesrc.getWidth() - offsetPrev;
+		else
+			return imagesrc.getWidth()/slider.getValue();
 	}
 }
