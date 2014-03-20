@@ -15,15 +15,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		Vue v = new Vue() ;
-		BufferedImage image = null ;
-		try{
-			image = ImageIO.read(new File("../res/wpdebian2.png"));
-			imageBase = image ;
-			
-		}catch(IOException e) {
-			
-		}
-
+		
 	}
 
 	public Image getImageResult() {
