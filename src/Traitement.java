@@ -6,11 +6,9 @@ public class Traitement implements ITraiter, Runnable{
 	protected Image imageBase ;
 	protected Image imageResult;
 	protected int offset ;
-	protected Main m ;
 	
 	
-	public Traitement(Main m,Image base, int offset){
-		this.m = m ;
+	public Traitement(Image base,int offset){
 		imageBase = base;
 		this.offset = offset ;
 		
@@ -18,7 +16,7 @@ public class Traitement implements ITraiter, Runnable{
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		traiter();
 		
 	}
 

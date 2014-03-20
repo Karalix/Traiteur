@@ -36,6 +36,7 @@ public class Vue {
 	
 	private Traitement traitement ;
 	private Image imagesrc;
+	private Image imageres;
 	
 	
 	public Vue(){
@@ -80,6 +81,43 @@ public class Vue {
 		rouge = new JMenuItem("Rouge");
 		vert = new JMenuItem("Vert");
 		
+		gris.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				traitement = new GrisTraitement(imagesrc, 0);
+				
+			}
+		});
+		
+		bleu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				traitement = new BleuTraitement(imagesrc, 0);
+
+				
+			}
+		});
+		
+		rouge.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				traitement = new RougeTraitement(imagesrc, 0);
+
+				
+			}
+		});
+		
+		vert.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				traitement = new RougeTraitement(imagesrc, 0);
+
+			}
+		});
 		
 		
 		

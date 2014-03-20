@@ -3,8 +3,8 @@ import java.awt.Image;
 
 public class GrisTraitement extends Traitement {
 
-	public GrisTraitement(Main m,Image base, int offset) {
-		super(m, base, offset);
+	public GrisTraitement(Image base, int offset) {
+		super(base, offset);
 		// TODO Auto-generated constructor stub
 	}
 	
